@@ -14,6 +14,11 @@ return new class extends Migration
         Schema::create('goal_evaluations', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+
+            $table->integer('progress')->default(0);
+
+            $table->foreignIdFor(\App\Models\Goal::class)->nullable()->constrained();
+            $table->foreignIdFor(\App\Models\Employee::class)->nullable()->constrained();
         });
     }
 
