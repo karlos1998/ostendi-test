@@ -20,5 +20,9 @@ class DatabaseSeeder extends Seeder
 
         $this->call(EmployeeSeeder::class);
 
+        $userBearer = $user->createToken('seed')->plainTextToken;
+
+        echo "Bearer Administratora: $userBearer";
+
     }
 }
