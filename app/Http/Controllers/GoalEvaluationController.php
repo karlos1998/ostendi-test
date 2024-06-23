@@ -6,6 +6,7 @@ use App\Http\Requests\StoreGoalEvaluationRequest;
 use App\Http\Requests\UpdateGoalEvaluationRequest;
 use App\Models\GoalEvaluation;
 use App\Services\GoalEvaluationService;
+use OpenApi\Attributes as OA;
 
 class GoalEvaluationController extends Controller
 {
@@ -29,9 +30,31 @@ class GoalEvaluationController extends Controller
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    #[OA\Post(
+        path: '/api/goal-evaluations',
+        summary: 'Store new goal evaluations',
+        security: [['bearerAuth' => []]],
+        requestBody: new OA\RequestBody(
+            required: true,
+            content: new OA\JsonContent(ref: '#/components/schemas/StoreGoalEvaluationRequest')
+        ),
+        tags: ['Goal Evaluations'],
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Successful operation',
+                content: new OA\JsonContent(ref: '#/components/schemas/GoalEvaluation')
+            ),
+            new OA\Response(
+                response: 401,
+                description: 'Unauthenticated'
+            ),
+            new OA\Response(
+                response: 422,
+                description: 'Unprocessable entity'
+            ),
+        ]
+    )]
     public function store(StoreGoalEvaluationRequest $request)
     {
         return response()->json($this->goalEvaluationService->store($request->validated()));
