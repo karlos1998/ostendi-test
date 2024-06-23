@@ -14,6 +14,14 @@ cp .env.example .env
 ```
 
 ```
+./vendor/bin/sail php artisan key:generate
+```
+
+```
+./vendor/bin/sail php artisan test
+```
+
+```
 ./vendor/bin/sail php artisan migrate:fresh --seed
 ```
 
