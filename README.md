@@ -18,18 +18,18 @@ cp .env.example .env
 ```
 
 ## Informacje
-Przykładowy routing POST zapisujący postęp pracy znajduje się tutaj (oczywiście jeśli uruchamiay projekt w środowisku lokalnym):
-http://localhost/api/goal-evaluations/
+Dokumentację użycia stworzonego, testowego routingu znajdziemy tutaj:
+http://localhost/api/documentation#/Goal%20Evaluations
 
 Wymaga on jednak autoryzacji użytkownika.
 Seeder tworzy jednego użytkownika w bazie.
-By otrzymać klucz sancum użyj komendy:
+By otrzymać klucz Sanctum użyj komendy:
 ```
 ./vendor/bin/sail php artisan app:get-admin-token 
 ```
-Następnie wpisz go w nagłowek Authorization: Bearer TUTAJ_TOKEN
+Następnie wpisz go w nagłowek Authorization: Bearer TUTAJ_TOKEN jeśli korzystasz np z postmana, lub podaj go bezpośrednio w autoryzacji swagger.
 
-Główny seeder generuje 10 pracowniów i 30 zadań, co oznacza, że goal_id musi być w zakresie 1-30 a employee_id 1-10
+#### Główny seeder generuje 10 pracowniów i 30 zadań, co oznacza, że goal_id musi być w zakresie 1-30 a employee_id 1-10
 
-#### Uwaga
+### Uwaga
 Możemy stworzyć stworzyć jeden log zapisu postępu pracy dla tego samego goal_id i employee_id. Jeśli zrobimy to drugi raz rekord zostanie nadpisany  i zostanie ustawiny nowy progress.
